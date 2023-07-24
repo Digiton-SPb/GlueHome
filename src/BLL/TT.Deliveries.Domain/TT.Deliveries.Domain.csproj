@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TT.Deliveries.Domain.Dto\TT.Deliveries.Domain.Dto.csproj" />
+    <ProjectReference Include="..\TT.Deliveries.Common\TT.Deliveries.Common.csproj" />
+  </ItemGroup>
+</Project>

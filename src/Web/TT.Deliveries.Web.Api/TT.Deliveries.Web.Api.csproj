@@ -1,16 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="Automapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.9" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\TT.Deliveries.Data.Dto\TT.Deliveries.Data.Dto.csproj" />
+    <ProjectReference Include="..\..\DAL\TT.Deliveries.DataAccess.EF\TT.Deliveries.DataAccess.EF.csproj" />
+    <ProjectReference Include="..\..\BLL\TT.Deliveries.Common\TT.Deliveries.Common.csproj" />
   </ItemGroup>
-
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\..\DAL\TT.Deliveries.DataAccess.EF\Db\deliveries.db" DestinationFolder="..\..\..\db" />
+    <Copy SourceFiles="..\..\DAL\TT.Deliveries.DataAccess.EF\Db\deliveries.db" DestinationFolder="$(OutDir)/db" />
+  </Target>
 </Project>

@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  TT.Deliveries.Web.Api.Service:
+   image: ${DOCKER_REGISTRY-}gluehome:latest
+   build:
+    context: .
+    dockerfile: Dockerfile
+   environment:
+    - ASPNETCORE_ENVIRONMENT=Production
+   ports:
+    - "8080:80"
+   volumes:
+    - type: bind
+      source: ./db/deliveries.db
+      target: /app/db/deliveries.db
+    - type: bind
+      source: ./logs
+      target: /app/logs
